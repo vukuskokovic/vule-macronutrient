@@ -1,16 +1,5 @@
-# vulemacro
+Mobile app used for tracking calories and macro nutrients made in flutter. You have 3 main menus: Foods, Today, AddFood.
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Foods - this menu is used for view all added foods alongside its macros.
+2. Today - this menu is used for adding and viewing what you ate today.
+3. AddFood - this menu is used for adding new foods to the whole list of foods

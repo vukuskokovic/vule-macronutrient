@@ -42,7 +42,6 @@ class NewFoodState extends State<NewFoodWidget> {
     buildContext = context;
     return Stack(
       children: [
-        const Positioned(left: 50, top: 50, child: Text("kurac")),
         Positioned(
             top: 50,
             left: 10,

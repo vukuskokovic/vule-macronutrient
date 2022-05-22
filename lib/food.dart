@@ -109,12 +109,12 @@ class FoodPortion {
 }
 
 class MacroNutrients {
-  int protein, carbohidrates, fat, calories;
+  double protein, carbohidrates, fat, calories;
   MacroNutrients.fromJson(Map<String, dynamic> json)
-      : protein = json['p'],
-        carbohidrates = json['c'],
-        fat = json['f'],
-        calories = json['cal'];
+      : protein = json['p'] + .0,
+        carbohidrates = json['c'] + .0,
+        fat = json['f'] + .0,
+        calories = json['cal'] + .0;
   Map<String, dynamic> toJson() =>
       {'p': protein, 'c': carbohidrates, 'f': fat, 'cal': calories};
   MacroNutrients(

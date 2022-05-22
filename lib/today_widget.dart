@@ -58,9 +58,9 @@ class TodayWidgetState extends State<TodayWidget> {
   Widget getOnDayWidget() {
     String? foodsJson = preferenceInstance.getString("todaylog");
     List<Widget> logWidgets = <Widget>[];
-    int protein = 0;
-    int carbs = 0;
-    int fat = 0;
+    double protein = 0;
+    double carbs = 0;
+    double fat = 0;
     int caloriesLeft = preferenceInstance.getInt("caloriesleft")!;
     int caloriesMax = preferenceInstance.getInt("caloriegoal")!;
     if (foodsJson != null) {
@@ -76,7 +76,6 @@ class TodayWidgetState extends State<TodayWidget> {
       }));
       logWidgets.add(const Padding(padding: EdgeInsets.only(bottom: 100)));
     }
-    print("Building widget ${logWidgets.isEmpty}");
     return Stack(
       children: [
         logWidgets.isEmpty
@@ -152,17 +151,17 @@ class TodayWidgetState extends State<TodayWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
-                          "🥩${protein}g",
+                          "🥩${protein.toStringAsFixed(2)}g",
                           style: const TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          "🥔${carbs}g",
+                          "🥔${carbs.toStringAsFixed(2)}g",
                           style: const TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          "🧀${fat}g",
+                          "🧀${fat.toStringAsFixed(2)}g",
                           style: const TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
                         )

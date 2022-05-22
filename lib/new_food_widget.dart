@@ -31,10 +31,7 @@ class NewFoodState extends State<NewFoodWidget> {
         decoration: InputDecoration(
           labelText: label,
         ),
-        keyboardType: isnumber ? TextInputType.number : TextInputType.text,
-        inputFormatters: isnumber
-            ? <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly]
-            : null);
+        keyboardType: isnumber ? TextInputType.number : TextInputType.text);
   }
 
   @override
@@ -112,10 +109,14 @@ class NewFoodState extends State<NewFoodWidget> {
           const SnackBar(content: Text("Please fill in all the inputs above")));
       return;
     }
-    int protein = int.parse(proteinController.text);
-    int carbs = int.parse(carbController.text);
-    int fat = int.parse(fatController.text);
-    int calories = int.parse(calorieController.text);
+    double? protein = double.tryParse(proteinController.text);
+    double? carbs = double.tryParse(carbController.text);
+    double? fat = double.tryParse(fatController.text);
+    double? calories = double.tryParse(calorieController.text);
+    if (calories == null || protein == null || fat == null || carbs == null) {
+      manager.showSnackBar(const SnackBar(content: Text("Only numbers")));
+      return;
+    }
     String name = nameController.text;
     String path = await getFilePath(name + extension(imageFile.path));
     imageFile = await imageFile.copy(path);

@@ -20,17 +20,17 @@ class FoodLog {
       {'name': foodName, 'grams': grams, 'hour': hour, 'minute': minute};
 
   MacroNutrients calculateMacros() {
-    int protein = -1;
-    int carbs = 0;
-    int fat = 0;
-    int calories = 0;
+    double protein = -1;
+    double carbs = 0;
+    double fat = 0;
+    double calories = 0;
     for (int i = 0; i < Foods.length; i++) {
       if (Foods[i].name == foodName) {
         double foodRatio = grams.toDouble() / 100.0;
-        protein = (Foods[i].macros.protein * foodRatio).toInt();
-        carbs = (Foods[i].macros.carbohidrates * foodRatio).toInt();
-        fat = (Foods[i].macros.fat * foodRatio).toInt();
-        calories = (Foods[i].macros.calories * foodRatio).toInt();
+        protein = Foods[i].macros.protein * foodRatio;
+        carbs = Foods[i].macros.carbohidrates * foodRatio;
+        fat = Foods[i].macros.fat * foodRatio;
+        calories = Foods[i].macros.calories * foodRatio;
         return MacroNutrients(
             calories: calories,
             protein: protein,
@@ -75,7 +75,7 @@ class FoodLog {
                 alignment: Alignment.topRight,
                 child: Padding(
                     padding: const EdgeInsets.only(right: 10),
-                    child: Text("${macros.calories}cal",
+                    child: Text("${macros.calories.toStringAsFixed(2)}cal",
                         style: GoogleFonts.mukta(color: Colors.white))),
               ),
               Positioned(
@@ -84,11 +84,11 @@ class FoodLog {
                 child: Wrap(
                   alignment: WrapAlignment.spaceAround,
                   children: [
-                    Text("🥩${macros.protein}",
+                    Text("🥩${macros.protein.toStringAsFixed(2)}",
                         style: GoogleFonts.bebasNeue(color: Colors.white)),
-                    Text("🥔${macros.carbohidrates}",
+                    Text("🥔${macros.carbohidrates.toStringAsFixed(2)}",
                         style: GoogleFonts.bebasNeue(color: Colors.white)),
-                    Text("🧀${macros.fat}",
+                    Text("🧀${macros.fat.toStringAsFixed(2)}",
                         style: GoogleFonts.bebasNeue(color: Colors.white))
                   ],
                 ),

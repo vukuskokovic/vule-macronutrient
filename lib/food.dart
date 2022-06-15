@@ -64,7 +64,10 @@ class Food {
                 height: 200,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: FileImage(File(await getFilePath(imagefile))))),
+                        image: imagefile == "none"
+                            ? Image.asset("assets/blank.png").image
+                            : Image.file(File(await getFilePath(imagefile)))
+                                .image)),
               ),
             ),
             Positioned(

@@ -103,8 +103,7 @@ class NewFoodState extends State<NewFoodWidget> {
         carbController.text == "" ||
         fatController.text == "" ||
         nameController.text == "" ||
-        calorieController.text == "" ||
-        !imageInited) {
+        calorieController.text == "") {
       manager.showSnackBar(
           const SnackBar(content: Text("Please fill in all the inputs above")));
       return;
@@ -118,10 +117,12 @@ class NewFoodState extends State<NewFoodWidget> {
       return;
     }
     String name = nameController.text;
-    String path = await getFilePath(name + extension(imageFile.path));
-    imageFile = await imageFile.copy(path);
+    if (imageInited) {
+      String path = await getFilePath(name + extension(imageFile.path));
+      imageFile = await imageFile.copy(path);
+    }
     Food newFood = Food(
-        imagefile: basename(imageFile.path),
+        imagefile: (imageInited ? basename(imageFile.path) : "none"),
         name: name,
         macros: MacroNutrients(
             protein: protein,

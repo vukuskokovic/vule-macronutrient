@@ -41,8 +41,9 @@ class AddLogWidgetState extends State<AddLogWidget> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> foodNames = Foods.map((value) => value.name).toList();
-    foodNames.sort();
+    List<String> foodNames =
+        Foods.map((value) => capitalize(value.name)).toList();
+    foodNames.sort(((a, b) => a.toLowerCase().compareTo(b.toLowerCase())));
     if (foodNames.isNotEmpty && selectedValue == null) {
       selectedValue = foodNames[0];
       selectedFood = Foods[0];
@@ -68,8 +69,9 @@ class AddLogWidgetState extends State<AddLogWidget> {
                         onChanged: (value) {
                           setState(() {
                             selectedValue = value.toString();
-                            selectedFood = Foods.firstWhere(
-                                (element) => element.name == value);
+                            selectedFood = Foods.firstWhere((element) =>
+                                element.name.toLowerCase() ==
+                                value.toString().toLowerCase());
                           });
                         }),
                   ),
@@ -173,4 +175,11 @@ class AddLogWidgetState extends State<AddLogWidget> {
               ),
             )));
   }
+}
+
+String capitalize(String input) {
+  if (input.isEmpty) {
+    return input;
+  }
+  return input[0].toUpperCase() + input.substring(1);
 }
